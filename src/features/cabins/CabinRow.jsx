@@ -49,7 +49,7 @@ const CabinRow = ({ cabin }) => {
 	const queryClient = useQueryClient();
 
 	const { isLoading: isDeleting, mutate } = useMutation({
-		mutationFn: deleteCabinApi(cabinId),
+		mutationFn: deleteCabinApi,
 		onSuccess: () => {
 			toast.success("Cabin successfully deleted");
 
@@ -69,7 +69,7 @@ const CabinRow = ({ cabin }) => {
 			<Discount>{formatCurrency(discount)}</Discount>
 			<button
 				disabled={isDeleting}
-				onClick={() => mutate()}
+				onClick={() => mutate(cabinId)}
 			>
 				Delete
 			</button>
