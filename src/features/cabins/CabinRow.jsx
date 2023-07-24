@@ -53,6 +53,8 @@ const CabinRow = ({ cabin }) => {
 
 	const { id: cabinId, name, maxCapacity, regularPrice, discount, description, image } = cabin;
 
+	const isWorking = isDeleting || isCreating;
+
 	const handleDuplicate = () => {
 		createCabin({
 			name: `Copy of ${name}`,
@@ -80,7 +82,7 @@ const CabinRow = ({ cabin }) => {
 						<HiPencil />
 					</button>
 					<button
-						disabled={isDeleting}
+						disabled={isWorking}
 						onClick={() => deleteCabin(cabinId)}
 					>
 						<HiTrash />
