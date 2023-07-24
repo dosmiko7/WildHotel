@@ -5,6 +5,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { useDeleteCabin } from "./useDeleteCabin";
 
 import { useState } from "react";
+import { useCreateCabin } from "./useCreateCabin";
 
 const TableRow = styled.div`
 	display: grid;
@@ -48,8 +49,20 @@ const Discount = styled.div`
 const CabinRow = ({ cabin }) => {
 	const [showForm, setShowForm] = useState(false);
 	const { isDeleting, deleteCabin } = useDeleteCabin();
+	const { isCreating, createCabin } = useCreateCabin();
 
-	const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
+	const { id: cabinId, name, maxCapacity, regularPrice, discount, description, image } = cabin;
+
+	const handleDuplicate = () => {
+		createCabin({
+			name: `Copy of ${name}`,
+			maxCapacity,
+			regularPrice,
+			discount,
+			description,
+			image,
+		});
+	};
 
 	return (
 		<>
@@ -60,7 +73,7 @@ const CabinRow = ({ cabin }) => {
 				<Price>{formatCurrency(regularPrice)}</Price>
 				{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 				<div>
-					<button>
+					<button onClick={handleDuplicate}>
 						<HiMiniSquare2Stack />
 					</button>
 					<button onClick={() => setShowForm((show) => !show)}>
