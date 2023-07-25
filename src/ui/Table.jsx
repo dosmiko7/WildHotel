@@ -84,7 +84,11 @@ const Header = ({ children }) => {
 	);
 };
 
-const Body = ({ children }) => {};
+const Body = ({ data, render }) => {
+	if (!data.length) return <Empty>No data to show</Empty>;
+
+	return <StyledBody>{data.map(render)}</StyledBody>;
+};
 
 const Row = ({ children }) => {
 	const { columns } = useContext(TableContext);
