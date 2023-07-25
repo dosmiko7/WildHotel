@@ -3,6 +3,7 @@ import { HiMiniSquare2Stack, HiPencil, HiTrash } from "react-icons/hi2";
 
 import CreateCabinForm from "./CreateCabinForm";
 import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
@@ -87,12 +88,19 @@ const CabinRow = ({ cabin }) => {
 					<Modal.Window name="edit">
 						<CreateCabinForm cabinToEdit={cabin} />
 					</Modal.Window>
-					<button
-						disabled={isWorking}
-						onClick={() => deleteCabin(cabinId)}
-					>
-						<HiTrash />
-					</button>
+
+					<Modal.Open>
+						<button>
+							<HiTrash />
+						</button>
+					</Modal.Open>
+					<Modal.Window>
+						<ConfirmDelete
+							resourceName="cabins"
+							disabled={isWorking}
+							onConfirm={() => deleteCabin(cabinId)}
+						/>
+					</Modal.Window>
 				</Modal>
 			</div>
 		</TableRow>
