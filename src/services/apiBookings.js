@@ -9,7 +9,14 @@ export const getBookings = async ({ filter, sortBy }) => {
 			{ count: "exact" }
 		);
 
-	if (filter !== null) query = query[filter.method || "eq"](filter.field, filter.value);
+	if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
+
+	if (sortBy) {
+		query = query.order(sortBy.field, {
+			ascending: sortBy.direction === "asc" ? 1 : -1,
+		});
+	}
+
 	const { data, error } = await query;
 
 	if (error) {
