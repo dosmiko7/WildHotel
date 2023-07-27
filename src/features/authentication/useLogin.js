@@ -13,8 +13,8 @@ export const useLogin = () => {
 
 		onSuccess: (user) => {
 			// manually set data to react query cache
-			queryClient.setQueryData(["user"], user);
-			navigate("/dashboard");
+			queryClient.setQueryData(["user"], user.user);
+			navigate("/dashboard", { replace: true });
 		},
 
 		onError: (err) => {
