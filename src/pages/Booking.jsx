@@ -1,5 +1,7 @@
+import BookingDetail from "../features/bookings/BookingDetail";
+
 const Booking = () => {
-	return <div>Booking</div>;
+	return <BookingDetail />;
 };
 
 export default Booking;
