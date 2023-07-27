@@ -107,6 +107,7 @@ export const updateBooking = async (id, obj) => {
 		console.error(error);
 		throw new Error("Booking could not be updated");
 	}
+	console.log(id);
 	return data;
 };
 
