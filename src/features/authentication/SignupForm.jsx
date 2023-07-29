@@ -3,15 +3,24 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
+import { useSignup } from "./useSignup";
 
 const SignupForm = () => {
-	const { register, formState, getValues, handleSubmit } = useForm();
+	const { signup, isLoading } = useSignup();
+	const { register, formState, getValues, handleSubmit, reset } = useForm();
 	const { errors } = formState;
 
-	const onSubmit = (data) => {};
+	const onSubmit = ({ fullName, email, password }) => {
+		signup(
+			{ fullName, email, password },
+			{
+				onSettled: () => reset(),
+			}
+		);
+	};
 
 	return (
-		<Form onSubmit={handleSubmit()}>
+		<Form onSubmit={handleSubmit(onSubmit)}>
 			<FormRow
 				label="Full name"
 				error={errors?.fullName?.message}
