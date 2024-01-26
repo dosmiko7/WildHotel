@@ -1,5 +1,5 @@
-<p align="center">
-  ![Logo](documentation/images/logo.png)
+<p align="center" width="100%">
+    <img src="documentation/images/logo.png"/>
 </p>
 
 # WildHotel
