@@ -36,6 +36,7 @@ const LoginForm = () => {
 					id="email"
 					// This makes this form better for password managers
 					autoComplete="username"
+					defaultValue="test@user.com"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					disabled={isLoading}
@@ -46,6 +47,7 @@ const LoginForm = () => {
 					type="password"
 					id="password"
 					autoComplete="current-password"
+					defaultValue="testuser"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					disabled={isLoading}
